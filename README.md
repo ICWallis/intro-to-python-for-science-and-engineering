@@ -31,13 +31,13 @@ Once you have navigated into the repository folder, you will find the environmen
  
 This will take a few minutes and will see a lot of text scroll past in the the prompt/terminal. You may need to respond y then press ENTER if asked to do so. The environment is automatically named sgw_env. Once it has built, we need to activate the environment by executing:
  
-    $ conda activate sgw_env
+    $ conda activate workshop_env
  
-\(sgw_env\) should now appear at the start of your current line in the prompt/terminal window.
+\(workshop_env\) should now appear at the start of your current line in the prompt/terminal window.
 
 Refer to [this page](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) for mor information on making and managing conda environments.
 
-__Open the jupyter notebook called 'Code-along.ipynb'.__ Because the previous step put you inside the right environment (conda activate sgw_env), you can now launch the Jupyter lab IDE (interactive development environnement, where you will write/run code). Into your terminal/prompt type the following and it return:
+__Open the jupyter notebook called 'Code-along.ipynb'.__ Because the previous step put you inside the right environment (conda activate sgw_env), you can now launch the Jupyter lab IDE (interactive development environnement, where you will write/run code). You are also in the correct folder to start (i.e., the same folder as the notebook you want to open). Into your terminal/prompt type the following and hit return:
 
     $ jupyter lab
  
@@ -48,7 +48,7 @@ __When you are finished__ with Juypter Lab, close the browser window and go back
 When you come back to the workshop material at a later date, you may have to activate the sgw_env environment again before launching Juypter Lab. 
 
 There are other ways to make environments and launch jupyter lab (or other code editors) using the Anaconda "navigator" software. However, I strongly recommend you take the time to get familiar with using the prompt/terminal. 
- 
+
  
 **Other useful Terminal commands**
  
