@@ -1,0 +1,282 @@
+# ========================
+# download and install git
+# ========================
+
+Useful docs: https://docs.github.com/en/get-started/getting-started-with-git
+
+When in git bash....
+
+These apply to the git terminal (Unix) and may be different in the windows terminal
+
+cd ..                       Change to the file above in the directory
+cd ~                        Go back to the top of the directory
+cd <FilenameOrPath>         Change to the written file name or path
+ls                          List the contents of a file
+ctrl + Insert               Copy
+Shift + Insert              Paste
+PWD                         Shows me my present working directory
+mkdir <new-directory-name>    Make a folder
+rm <filename>               Remove a file
+rmdir <directory>           Remove an empty folder
+rm -r <directory>           Remove a folder with stuff in it
+ctrl + c                    Interrupts a process
+q                           Exits the [END] or a long printout
+
+# =============
+# configure git
+# =============
+
+# Open git bash and follow instructions: https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
+
+# Set up your user profile
+# ------------------------
+Should be the same email and name that you use for github.
+
+
+$ git config --global user.name "Irene Wallis"
+$ git config --global user.email johndoe@example.com
+
+# Set preferred text editor 
+# -------------------------
+https://docs.github.com/en/get-started/getting-started-with-git/associating-text-editors-with-git
+
+!! Download and install vs code (Visual Studio Code), if you have not already done so
+You can use another text editor but, because vs code works on windows and mac, we will be using it here
+
+1. check that vs code is accessible 
+$ code --help
+
+If code does not respond, trouble shoot as per... 
+https://stackoverflow.com/questions/30024353/how-to-use-visual-studio-code-as-default-editor-for-git
+
+2. set vs code as the preferred editor
+$ git config --global core.editor "code --wait"
+
+3. check configuration (should boot vs code)
+$ git config --global -e
+
+# Set the default branch name
+# ---------------------------
+As a consequence of the BLM movement, the old terminology of Master branch has been 
+removed by github. The term is now Main. This aligns your local git with github. 
+
+$ git config --global init.defaultBranch main
+
+# Check configuration
+# -------------------
+
+$ git config -l
+
+FYI advanced users: If you are using git on Linux and share files with people on windows, 
+there can be issues with line endings. VS Studio Code doesn't care about this and 
+will make issues with line endings just go away. The Linux editors will
+have a fit if it encounters a windows line ending. If you have line ending issues, then 
+either use VS Code or get some help setting up your git config to deal with line ending issues. 
+
+# ===========================
+# Connect git to github (ssh)
+# ===========================
+
+- https://docs.github.com/en/authentication/connecting-to-github-with-ssh 
+
+# 1. generate a key
+# -----------------
+
+open git bash
+
+$ ssh-keygen -t ed25519 -C "your_email@example.com"
+
+use the email address you gave to GitHub and Git
+
+press enter to accept the default save location
+
+I do not use a passphrase, but it is up to you. If someone gets access to your computer, 
+they get access to all systems that your computer has access to. If you want to use a 
+passphrase, then you would need to type it every time.
+
+can just leave empty and hit enter
+
+Go and find your keys in the .ssh folder in your home directory
+This will be a hidden file, so you will need to turn on hidden files. 
+It will be called id_ed25519 and id_ed25519.pub
+
+# 2. set up ssh-agent
+# -------------------
+the ssh-agent is software that manages the connection
+
+start the ssh-agent
+
+$ eval "$(ssh-agent -s)"
+Agent pid 1534
+
+pid = process ID, and this will change every time
+
+add the key to the ssh agent
+$ ssh-add ~/.ssh/id_ed25519
+
+~ sends you to your user or home directory
+C:/Users/Irene/.ssh is the same as ~/.ssh
+
+check that the identity has been added
+$ ssh-add -l
+
+# 3. add the public key to github 
+# -------------------------------
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
+
+Add the key to github. 
+We are using an authentication key, not signing. 
+When you get further along with open source or large project colab, 
+you may want to move to a signing. 
+
+You will be prompted for authentication. This is where the app comes in. 
+https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/sudo-mode
+
+! Never share the private, only the .pub (public)
+
+# 4. Check that you can now connect to git
+# ----------------------------------------
+
+$ ssh -i ~\.ssh\id_ed25519 -T git@github.com
+Hi ICWallis! You've successfully authenticated, but GitHub does not provide shell access.
+
+# ====================================
+# make repo on github (aka the remote)
+# ====================================
+
+
+# ============================
+# clone repo to local computer 
+# ============================
+
+Navigate to the directory into which you want to place the cloned repo
+
+pwd = present working directory
+cd = change directory
+
+$ git clone https://github.com/ICWallis/tutorial-publication-ready-figures.git
+
+Use the green code button, copy the HTTPS url (double squares on the right)
+
+# ==============================================
+# make changes and commit and push to the remote
+# ==============================================
+Rule of thumb: if it has been committed, you can retrieve it.
+Commit often, make it a habit. 
+
+A file must be 'tracked' (committed at least once) for git to know about it
+
+Below are some common commands to manage git using the gitbash. 
+
+git status                            Tells you the status of files
+git log --oneline --graph --all       Nice view of the commit history
+
+git add "<filename>"            Adds named file to the staging area
+git add .                       Adds all files to the staging area
+git commit -m "<comment>"       Commits the file in the staging area with a commit message
+git commit -a -m "<comment>"    Commits the changes of tracked files with a commit message
+
+git branch                      Lists the branches that are available
+git branch <branchname>         Makes a new branch with the given name
+git checkout <branchname>       Switch to the named branch
+git log --oneline --decorate    Use this to look at the branches and note the HEAD pointer
+
+git merge <branchname>        Merges the changes that you made in the branch that is named into 
+                              the branch that you currently have checked out, where the branch that 
+                              is named overwrites the branch we have checked out unless there is a conflict.
+                              Conflicts can either be manually managed or managed visually using tools 
+                              withing VS Studio Code (git tree) or another GUI program. 
+                              Git should add markers to those files that have conflicts 
+                              (this is a rabbit hole, and better managed with vs code).
+
+git remote                     Get the name of the remote
+git push --all --prune         Pushes everything to the remote and prunes branches deleted locally
+git push <remote> <branch>     To push specific branch to a named remote (usually origin)
+git fetch --prune              Pulls a view of everything from the remote and prunes dead branches deleted elsewhere
+git pull                       Pulls everything from remote and updates the local directory/ 
+
+If you are working on multiple computers or collaborating with others,
+it is good practice to fetch --prune first, take a look, and then git pull. O
+
+--------------
+OTHER COMMANDS - the list of many for those who want other ways
+--------------
+
+CHECK CONTENTS
+--------------
+git status                                     Check the status
+git status -s                                  Short version of the above
+git ls-tree --full-tree -r --name-only HEAD    List the files inside my git repo
+git log --oneline --graph --all                Nice view of git history
+git shortlog --no-merges main                  A clean summary of all comments
+
+COMIT FILES
+-----------
+git add "<filename>"        Adds named file to the staging area
+git add .                   Adds all to the staging area
+git unstage                 Removes files from the staging area (command was added using Aliases see below)
+
+# Aliases must have set up the shorthand to use these
+$ git config --global alias.unstage 'reset HEAD --'        A nice command for un-staging files
+Others for lazy keyboard users
+$ git config --global alias.co checkout
+$ git config --global alias.br branch
+$ git config --global alias.ci commit
+$ git config --global alias.st status
+
+COMMIT MESSAGES
+---------------
+The seven rules:
+1. Separate subject from the body with a blank line
+2. Limit the subject line to 50 characters
+3. Capitalize the subject line
+4. Do not end the subject line with a period
+5. Use the imperative mood in the subject line
+    think: if applied, this commit will XXXXXXXX
+6. Wrap the body at 72 characters
+7. Use the body to explain why and how
+
+72 is the hard limit because it gets truncated
+
+REMOTE
+------
+git remote                      Shows a list of remote repositories 
+                                ('origin' is the default name give to the repository a clone has come from)
+git remote -v                   Shows the URLs that Git has stored for reading and writing to that remote, 
+                                where if a repository has more than one remote then it may list many push/fetch pairs
+git pull <remote> <branch>      Pulls from the remote and adds to the branch consecutively (need the branch name)
+git fetch <remote>              Fetches any new data from the remote. It does not automatically merge it with or modify what Im working on.  
+git push <remote> <branch>      To push up to the remote
+git push --all --prune          If I want to push all of my local work up to github and prune any branches I have deleted locally
+git remote show <remote>        Shows me the details about the remote
+git ls-remote <remote>          Shows me a list of stuff that is in my remote
+
+MERGING
+-------
+NOTE commit all changes before switching branches or look into "Stashing and Cleaning"
+
+git merge <branchname>          Merges the changes that you made in the branch that is named into the branch that you 
+                                currently have checked out, where the branch that is named overwrites the branch we have checked out. 
+                                If the master (or branch that is not named) has changed since the branch that is named was forked, 
+                                then there is a recursive merger strategy where git looks back to the common ancestor.  
+                                https://git-scm.com/book/az/v2/Git-Branching-Basic-Branching-and-Merging
+git branch -d <branchname>      Delete a branch (that was named above) after it was merged into the branch that the HEAD pointed to
+
+NOTE if there are conflicts, git adds markers to those files and you have to manually go in and fix the conflicts. 
+Merge conflicts are listed above (master or other branch we have checked out) and below (the named branch) 
+
+# =================
+# Make a .gitignore
+# =================
+
+This is the file that tells git what to ignore. 
+I will provide you a template that you can keep using. 
+
+# =================================================================
+# Getting our heads around git branching -- for the visual learners
+# =================================================================
+Git branches are valuable for collaboration and for testing.
+As a rule, you should ideally not commit directly to your main. 
+However, if you are working on your own always, committing to main is ok. 
+
+https://learngitbranching.js.org/

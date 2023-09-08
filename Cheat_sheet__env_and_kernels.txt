@@ -1,0 +1,81 @@
+#
+# Virtual environments
+# A walled garden into which you download packages needed to run your code
+# Used to freeze versions and make your code future proof
+#
+
+https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
+
+Windows: Use anaconda prompt
+Mac: Use termail or anaconda prompt
+
+Navigate to the folder containing the environment file. 
+$ conda env create -f environment.yml
+
+Or create a new environement from scratch:
+
+$ conda create --name <myenv>
+$ conda create --name <myenv> scipy 		# creates with a specified package downloaded
+$ conda create -n <myenv> scipy=0.17.3 		# creates with a specified version of a package downloaded
+$ conda create --name <myenv> python=2.7 	# creates with a specific version of python
+$ conda create --name <myclone> --clone <myenv> # create a clone of an existing env
+$ conda env create -f environment.yml
+
+Creating an environment means we have downloaded the packages. 
+
+$ conda activate <myenv>
+Means we are now inside that set of downloaded packages
+
+Other useful commands:
+$ conda env list
+$ conda list
+$ conda remove --name <myenv> --all
+
+To add packages on the fly, you can pip or conda install them. 
+
+$ pip install <PackageName>
+$ conda install <PackageName>
+
+There is a bug in the interaction between pip and conda. 
+Once you have started using pip to install packages in your environment, do not go back to use conda.
+There are more packages registered on pip than conda.
+
+If you have multiple versions of python on the go, then use the "python -m" prefix. eg:
+$ python -m pip install <PackageName>
+
+#
+# Kernels
+# A kernel provisions ipython to the jupyter notebook and allows you to do interactive programming. 
+#
+
+Your env must contain ipykernal:
+Activate your environment and install ipykernel...
+$ python -m ipykernel install --user --name <myenv>
+
+Can launch jupyter lab from within that environment. 
+If you do that, then the active environement should be the defult. 
+You can check by opening a jupyter notebook and pasting this. 
+$ import os
+$ print(os.environ['CONDA_DEFAULT_ENV'])
+
+Explore what kernels are generally available across your system using prompt
+$ jupyter kernelspec list
+Add your active environment to the generally available list
+$ python -m ipykernel install --name {MACHINE_READABLE_NAME} --display-name "{DISPLAY_NAME}" --user
+Remove environment form the generally available list
+$ jupyter kernelspec uninstall {MACHINE_READABLE_NAME} 
+
+-- {MACHINE_READABLE_NAME} is a placeholder for the machine project name. This name can only contain ASCII letters and numbers and these separators: dash, underscore, and period.
+-- {PROJECT-NAME} is a placeholder for the human-readable project name. This name may contain spaces and is shown on the Launcher page.
+
+Method from this website, more notes found there...
+https://docs.posit.co/ide/server-pro/user/2022.12.0+353.pro20/jupyter-lab/guide/jupyter-kernel-management.html
+
+Previously nb_conda_kernel was used:
+$ conda install nb_conda_kernel
+https://stackoverflow.com/questions/67202874/what-is-nb-conda-kernels-equivalent-for-python-3-9
+Google or ChatGPT may return this as a recommendation, but it does not work with Python 3.9 (yet)
+
+There are other approaches...
+https://towardsdatascience.com/get-your-conda-environment-to-show-in-jupyter-notebooks-the-easy-way-17010b76e874
+It can be a rabbit hole. 
