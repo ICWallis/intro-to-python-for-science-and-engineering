@@ -39,7 +39,7 @@ __Make a kernel__ As described above, a kernel is what enables interactive progr
 
     $ python -m ipykernel install --name workshop_env --display-name "workshop_env" --user
 
-Refer to 'cheat_sheet__env_and_kernels.txt' for more detail on managing kernels and environments. 
+Refer to 'Cheat_sheet__env_and_kernels.txt' for more detail on managing kernels and environments. 
 
 __Open the jupyter notebook called 'Code-along.ipynb'.__ Because the previous step put you inside the right environment (conda activate sgw_env), you can now launch the Jupyter lab IDE (interactive development environnement, where you will write/run code). You are also in the correct folder to start (i.e., the same folder as the notebook you want to open). Into your terminal/prompt type the following and hit return:
 
