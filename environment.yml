@@ -11,6 +11,7 @@ dependencies:
   - numpy         # "Numerical Python" - numerical methods
   - scipy         # "Scientific Python" - more numerical methods
   - pandas        # Data wrangling, spreadsheet like
+  - geopandas
   - openpyxl      # Needed to open xls files in Pandas
   - matplotlib    # Primary plotting package
   - seaborn       # Advanced static plotting package
