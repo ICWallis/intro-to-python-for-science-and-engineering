@@ -11,11 +11,11 @@ dependencies:
   - numpy         # "Numerical Python" - numerical methods
   - scipy         # "Scientific Python" - more numerical methods
   - pandas        # Data wrangling, spreadsheet like
-  - geopandas
   - openpyxl      # Needed to open xls files in Pandas
   - matplotlib    # Primary plotting package
   - seaborn       # Advanced static plotting package
   - plotly        # Advanced dynamic plotting package
   - pip:
-    #- xlrd==2.0.1 # Used to read xls files
-    #- chemicals   # Steam tables (and lots of other stuff)
+    - xlrd==2.0.1 # Used to read xls files
+    - chemicals   # Steam tables (and lots of other stuff for reservoir and process engineering)
+    - mplstereonet # Make stereonets
