@@ -1,4 +1,4 @@
-name: workshop_env
+name: intro_env
 channels:
   - conda-forge
   - defaults
@@ -18,4 +18,3 @@ dependencies:
   - pip:
     - xlrd==2.0.1 # Used to read xls files
     - chemicals   # Steam tables (and lots of other stuff for reservoir and process engineering)
-    - mplstereonet # Make stereonets
