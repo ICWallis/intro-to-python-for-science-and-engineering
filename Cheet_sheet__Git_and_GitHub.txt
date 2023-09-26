@@ -103,6 +103,7 @@ It will be called id_ed25519 and id_ed25519.pub
 # 2. set up ssh-agent
 # -------------------
 the ssh-agent is software that manages the connection
+must be done in gitbash
 
 start the ssh-agent
 
