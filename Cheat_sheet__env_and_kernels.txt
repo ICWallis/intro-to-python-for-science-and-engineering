@@ -7,12 +7,26 @@
 https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
 
 Windows: Use anaconda prompt
-Mac: Use termail or anaconda prompt
+Mac: Use terminal or anaconda prompt
+
+# ================================
+# Working with conda in powershell
+# ================================
+
+Open anaconda prompt and run:
+
+$ conda init powershell
+
+Close powershell if already running. Reopen and the conda environment should show at the start of the line in brackets.
+
+# ======================
+# Make a new environment
+# ======================
 
 Navigate to the folder containing the environment file. 
 $ conda env create -f environment.yml
 
-Or create a new environement from scratch:
+Or create a new environment from scratch:
 
 $ conda create --name <myenv>
 $ conda create --name <myenv> scipy 		# creates with a specified package downloaded
@@ -22,6 +36,7 @@ $ conda create --name <myclone> --clone <myenv> # create a clone of an existing 
 $ conda env create -f environment.yml
 
 Creating an environment means we have downloaded the packages. 
+Consequently, this may take some time if your environment includes large packages. 
 
 $ conda activate <myenv>
 Means we are now inside that set of downloaded packages

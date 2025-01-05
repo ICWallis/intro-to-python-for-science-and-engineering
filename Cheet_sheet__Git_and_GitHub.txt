@@ -141,10 +141,17 @@ https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/s
 $ ssh -i ~\.ssh\id_ed25519 -T git@github.com
 Hi ICWallis! You've successfully authenticated, but GitHub does not provide shell access.
 
+if this is the first time the identity has been added, it may not be recognized. 
+in this case you will be prompted to add the identity by typing "yes".
+you will need to do this to connect to github and get your success message.
+
 # ====================================
 # make repo on github (aka the remote)
 # ====================================
 
+Follow the instructions on github and use defaults, setting python for the git ignore type.
+All public repositories should have a license. If there is no license, then that repo cannot be used by others. 
+I recommend the Apache 2 license, but the choice is yours. 
 
 # ============================
 # clone repo to local computer 
