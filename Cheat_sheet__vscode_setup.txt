@@ -1,0 +1,15 @@
+This file documents my preferred list of extensions for VS Studio Code
+
+python
+jupyter
+
+powershell
+
+git history
+git lens
+git graph
+
+github copilot (needs account, github signin)
+
+rainbow csv
+code spell checker
