@@ -58,17 +58,17 @@ There are more packages registered on pip than conda.
 If you have multiple versions of python on the go, then use the "python -m" prefix. eg:
 $ python -m pip install <PackageName>
 
-#
-# Kernels
-# A kernel provisions ipython to the jupyter notebook and allows you to do interactive programming. 
-#
+# ================================
+# Make a kernal in the environment
+# ================================
+A kernel provisions ipython to the jupyter notebook and allows you to do interactive programming.
 
 Your env must contain ipykernal:
 Activate your environment and install ipykernel...
 $ python -m ipykernel install --user --name <myenv>
 
 Can launch jupyter lab from within that environment. 
-If you do that, then the active environement should be the defult. 
+If you do that, then the active environment should be the defult. 
 You can check by opening a jupyter notebook and pasting this. 
 $ import os
 $ print(os.environ['CONDA_DEFAULT_ENV'])
