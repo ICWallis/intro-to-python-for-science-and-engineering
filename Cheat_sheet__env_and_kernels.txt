@@ -9,14 +9,18 @@ https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.h
 Windows: Use anaconda prompt
 Mac: Use terminal or anaconda prompt
 
-# ================================
-# Working with conda in powershell
-# ================================
+# ===================================
+# Advanced steps for powershell users
+# ===================================
+If novice users, skip to the next section. 
 
+* Extra step for advanced users who know what this does
+In Powershell run:
+$ set-ExecutionPolicy RemoteSigned
+
+* Extra step for advanced users who want to work with conda in powershell
 Open anaconda prompt and run:
-
 $ conda init powershell
-
 Close powershell if already running. Reopen and the conda environment should show at the start of the line in brackets.
 
 # ======================
